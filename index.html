@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaloyCSer & lootrun Show</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ФОНОВЫЕ ЭФФЕКТЫ -->
+    <div class="bg-fog"></div>
+    <div class="bg-fog fog-2"></div>
+    <div class="bg-particles"></div>
+
+    <!-- ЭКРАН 1: ПРИВЕТСТВИЕ -->
+    <section class="hero-screen" id="hero">
+        <div class="hero-content-wrapper">
+            <div class="hero-content">
+                <div class="live-badge kick-live">● LIVE</div>
+                
+                <div class="hero-avatars-case">
+                    <div class="case-avatar case-1">
+                        <img src="assets/img/host1.jpg" alt="MaloyCSer" onerror="this.parentElement.innerHTML='👤'">
+                        <div class="case-glow glow-1"></div>
+                    </div>
+                    <div class="case-connector">VS</div>
+                    <div class="case-avatar case-2">
+                        <img src="assets/img/host2.jpg" alt="lootrun" onerror="this.parentElement.innerHTML='👤'">
+                        <div class="case-glow glow-2"></div>
+                    </div>
+                </div>
+                
+                <h1 class="hero-title-case">ПРИВЕТ, ЛЁХА!</h1>
+                
+                <div class="hero-text-block">
+                    <p class="hero-intro">В данном шоу ты будешь проходить <span class="highlight">6 эпизодов</span>. Здесь нет выбора сложности — ты идёшь по заготовленному пути.</p>
+                    <p class="hero-intro">Единственное, как ты можешь повлиять — это <span class="highlight">выбор ставки</span>.</p>
+                    <p class="hero-intro">Также в шоу будут задания с участием чата: колёса, розыгрыши и другие активности — всё на тебе!</p>
+                    
+                    <div class="case-stats">
+                        <div class="stat-box"><div class="stat-number">6</div><div class="stat-label">ЭПИЗОДОВ</div></div>
+                        <div class="stat-box"><div class="stat-number">3</div><div class="stat-label">ЗАДАНИЯ</div></div>
+                        <div class="stat-box"><div class="stat-number">∞</div><div class="stat-label">ЛУДКИ</div></div>
+                    </div>
+                    
+                    <p class="difficulty-note">Эпизоды идут по усложнению — чем дальше, тем тяжелее</p>
+                    <p class="love-note">настя, леша тебя любит сильно, как и чат</p>
+                </div>
+                
+                <button class="start-btn case-btn" id="startShow">
+                    <span class="btn-text">Я ГОТОВ, ПРИСТУПАЕМ</span>
+                    <div class="btn-glow-case"></div>
+                </button>
+            </div>
+        </div>
+
+        <div class="resizer" id="heroResizer"></div>
+        <aside class="empty-zone hero-empty-zone" id="heroEmptyZone">
+            <div class="resize-hint">↔ Ползунок для настройки области вебки и чата</div>
+        </aside>
+    </section>
+
+    <!-- ЭКРАН 2: СПИСОК ЭПИЗОДОВ -->
+    <main class="dashboard hidden" id="dashboard">
+        <section class="show-zone">
+            <header class="header-case">
+                <div class="live-badge kick-live">● LIVE</div>
+                <h1>ДОБРО ПОЖАЛОВАТЬ НА ЭФИР</h1>
+                <p class="crew">MaloyCSer & lootrun</p>
+                
+                <div class="case-avatars-small">
+                    <div class="small-case"><img src="assets/img/host1.jpg" alt="MaloyCSer" onerror="this.parentElement.innerHTML='👤'"></div>
+                    <div class="small-case"><img src="assets/img/host2.jpg" alt="lootrun" onerror="this.parentElement.innerHTML='👤'"></div>
+                </div>
+                
+                <p class="desc">Тут 5 эпизодов по 3 задания. 6 эпизод секретный...</p>
+            </header>
+
+            <section class="episodes-cases" id="episodesList"></section>
+            
+            <button class="back-to-hero" id="backToHero">← Вернуться к началу</button>
+        </section>
+
+        <div class="resizer" id="dashboardResizer"></div>
+        <aside class="empty-zone" id="dashboardEmptyZone"></aside>
+    </main>
+
+    <!-- ЭКРАН 3: АУДИО ЗАДАНИЕ -->
+    <section class="task-screen hidden" id="audioTaskScreen">
+        <div class="task-container">
+            <button class="back-btn" id="backToEpisodes1">← Назад к эпизодам</button>
+            <div class="task-header">
+                <div class="task-badge">Эпизод I • Задание <span id="audioTaskNum">1</span></div>
+                <h2 class="task-title-case">🎧 ЗВУКОРЕЖИССЁР</h2>
+            </div>
+            <div class="audio-section">
+                <div class="audio-player-case">
+                    <div class="audio-visualizer paused" id="audioVisualizer">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    </div>
+                    <button class="play-btn-case" id="playAudio">▶</button>
+                    <div class="volume-control">
+                        <span class="vol-icon">🔊</span>
+                        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                    <span class="audio-label">Аудиодорожка из слота/СДЕЛАЙ через расширение их громче</span>
+                </div>
+            </div>
+            <div class="slots-choice">
+                <h3 class="choice-title">ВЫБЕРИ ПРАВИЛЬНЫЙ СЛОТ:</h3>
+                <div class="slots-grid-case" id="slotsGrid"></div>
+            </div>
+        </div>
+        <div class="resizer" id="audioResizer"></div>
+        <aside class="empty-zone"></aside>
+    </section>
+
+    <!-- ЭКРАН 4: ЗАДАНИЕ С КНОПКОЙ -->
+    <section class="task-screen hidden" id="buttonTaskScreen">
+        <div class="task-container">
+            <button class="back-btn" id="backToEpisodes2">← Назад к эпизодам</button>
+            <div class="task-header">
+                <div class="task-badge">Эпизод II • Задание <span id="buttonTaskNum">1</span></div>
+                <h2 class="task-title-case" id="buttonTaskTitle">ЗАДАНИЕ</h2>
+            </div>
+            <div id="buttonTaskImageContainer" style="display:none; margin-bottom: 20px;">
+                <img id="buttonTaskImage" src="" alt="Task Image" style="width: 100%; max-height: 400px; object-fit: contain; border-radius: 12px; border: 1px solid #333;">
+            </div>
+            <div class="task-description-case">
+                <p class="task-text" id="buttonTaskDescription">Описание задания</p>
+                <div class="predict-box" id="predictBox">
+                    <span class="predict-label">📊 KICK PREDICT:</span>
+                    <span class="predict-text" id="buttonPredictText">[Текст для предикта]</span>
+                </div>
+                <div class="warning-box" id="warningBox" style="display:none;">
+                    <p>Леха, в случае отказа нажимай на кнопку выполненно!!!</p>
+                </div>
+            </div>
+            <div class="completion-section">
+                <button class="complete-btn-case" id="completeTaskBtn">
+                    <span class="btn-text">ВЫПОЛНЕНО</span>
+                    <div class="btn-glow-case"></div>
+                </button>
+                <p class="completion-hint">Нажми когда выполнишь задание</p>
+            </div>
+        </div>
+        <div class="resizer" id="buttonResizer"></div>
+        <aside class="empty-zone"></aside>
+    </section>
+
+    <!-- ЭКРАН 5: ВИКТОРИНА -->
+    <section class="task-screen hidden" id="quizTaskScreen">
+        <div class="task-container">
+            <button class="back-btn" id="backToEpisodes3">← Назад к эпизодам</button>
+            <div class="task-header">
+                <div class="task-badge">Эпизод <span id="quizEpisodeNum">III</span> • Задание <span id="quizTaskNum">1</span></div>
+                <h2 class="task-title-case" id="quizTaskTitle">ВИКТОРИНА</h2>
+            </div>
+            
+            <div id="quizVideoContainer" style="display:none; margin-bottom: 20px; text-align: center;">
+                <video id="quizVideoMuted" controls muted playsinline style="width: 100%; max-width: 600px; border-radius: 12px; border: 1px solid #333; background: #000;">
+                    <source src="" type="video/mp4">
+                    Ваш браузер не поддерживает видео
+                </video>
+            </div>
+
+            <div id="quizPreviewImageContainer" style="display:none; margin-bottom: 20px; text-align: center;">
+                <img id="quizPreviewImage" src="" alt="Slot Image" style="width: 100%; max-width: 500px; border-radius: 12px; border: 1px solid #333;">
+            </div>
+
+            <div id="quizRevealVideoContainer" style="display:none; margin: 20px auto; text-align: center;">
+                <video id="quizVideoUnmuted" controls playsinline style="width: 100%; max-width: 600px; border-radius: 12px; border: 2px solid var(--success); box-shadow: 0 0 20px rgba(0,255,136,0.3); background: #000;">
+                    <source src="" type="video/mp4">
+                    Ваш браузер не поддерживает видео
+                </video>
+                <p style="color: var(--success); margin-top: 10px; font-weight: bold;">🔊 Полная версия</p>
+            </div>
+
+            <!-- БЛЮР СЛОТЫ (Эп 5) -->
+            <div id="quizBlurContainer" style="display:none; margin: 20px auto; text-align: center; max-width: 90%; width: 90%;">
+                <div id="quizBlurImageWrapper" style="position: relative; display: inline-block; width: 100%; max-width: 480px; min-height: 200px; background: #1a1c24; border-radius: 16px; overflow: hidden; border: 2px solid var(--accent);">
+                    <img id="quizBlurImage" src="" alt="Blurred Slot" draggable="false">
+                    <div class="quiz-timer" id="quizTimer">⏱ 60</div>
+                </div>
+            </div>
+            
+            <div class="task-description-case">
+                <p class="task-text" id="quizTaskDescription">Описание задания</p>
+            </div>
+            
+            <div class="quiz-section">
+                <h3 class="choice-title" id="quizQuestion">ВЫБЕРИ ПРАВИЛЬНЫЙ ОТВЕТ:</h3>
+                <div class="quiz-options-case" id="quizOptions"></div>
+            </div>
+        </div>
+        <div class="resizer" id="quizResizer"></div>
+        <aside class="empty-zone"></aside>
+    </section>
+
+    <!-- ЭКРАН 6: ЗАВЕРШЕНИЕ -->
+    <section class="completion-screen hidden" id="completionScreen">
+        <div class="hero-content">
+            <div class="live-badge kick-live">● LIVE</div>
+            <h1 class="hero-title-case">ШОУ ЗАВЕРШЕНО!</h1>
+            
+            <div class="case-stats" style="margin: 40px 0;">
+                <div class="stat-box">
+                    <div class="stat-number">🏆</div>
+                    <div class="stat-label">ВСЕ ЭПИЗОДЫ ПРОЙДЕНЫ</div>
+                </div>
+            </div>
+
+            <p class="hero-intro" style="font-size: clamp(1.2rem, 2.5vw, 1.6rem); max-width: 850px; margin: 0 auto 40px; line-height: 1.6;">
+                Отлично провели время и раз уже ты прошел все задания, значит твой баланс не равен нулю, поздравляю тебя, удачного вывода.
+            </p>
+            
+            <button class="start-btn case-btn" id="restartBtn">
+                <span class="btn-text">В НАЧАЛО</span>
+                <div class="btn-glow-case"></div>
+            </button>
+        </div>
+    </section>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+    <div class="modal-overlay-case hidden" id="modalOverlay">
+        <div class="modal-window-case">
+            <div class="modal-header-case">
+                <div class="modal-icon">🎉</div>
+                <h2 class="modal-title-case">ИТОГ ЗАДАНИЯ</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-text" id="modalEpisodeText">Эпизод завершён</p>
+                <div class="final-punishment-case" id="finalPunishmentBox">
+                    <h3 class="punishment-title">ИТОГОВОЕ НАКАЗАНИЕ:</h3>
+                    <p class="punishment-value" id="finalPunishmentValue">[Наказание]</p>
+                </div>
+                <div id="modalRevealImageContainer" style="display:none; margin: 20px 0;">
+                   <img id="modalRevealImage" src="" alt="Reveal" style="width: 100%; max-width: 400px; border-radius: 12px; border: 2px solid var(--success);">
+                </div>
+                <div id="modalVideoContainer" style="display:none; margin: 20px 0;">
+                    <video id="modalVideo" controls playsinline style="width: 100%; max-width: 500px; border-radius: 12px; border: 2px solid var(--success); background: #000;">
+                        <source src="" type="video/mp4">
+                        Ваш браузер не поддерживает видео
+                    </video>
+                </div>
+                <p class="modal-hint">Нажми кнопку ниже, чтобы продолжить</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn-case" id="continueBtn">ПРОДОЛЖИТЬ →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- АУДИО ЭФФЕКТЫ -->
+    <audio id="sfx-click" src="assets/audio/click.mp3" preload="auto"></audio>
+    <audio id="sfx-trans" src="assets/audio/transition.mp3" preload="auto"></audio>
+    <audio id="sfx-success" src="assets/audio/success.mp3" preload="auto"></audio>
+    <audio id="slotAudio" preload="auto"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
